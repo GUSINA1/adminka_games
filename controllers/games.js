@@ -41,10 +41,16 @@ const addGameController = async (req, res) => {
 
 
 // Получим игры из JSON-файла и отправим в ответ на запрос
-const sendAllGames = async (req, res) => {
+const sendAllGames = (req, res) => {
+  res.send(req.games);
+};
 
-    res.send(req.games);
-  };
+const sendUpdatedGames = (req, res) => {
+  res.send({
+    games: req.games,
+    updated: req.updatedObject
+  });
+};
   
   const deleteGame = async (req, res) => {
 
@@ -74,6 +80,7 @@ const sendAllGames = async (req, res) => {
   module.exports = {
     sendAllGames,
     deleteGame,
-    addGameController
+    addGameController,
+    sendUpdatedGames,
   
   }
